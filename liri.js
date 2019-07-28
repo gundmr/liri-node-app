@@ -63,8 +63,8 @@ const listOfFunctions = {
     });
 },
 
-    "concert-this": function () {
-        axios.get(`https://rest.bandsintown.com/artists/` + args[1] + `/events?app_id=codingbootcamp`)
+    "concert-this": function (queryText=args[1]) {
+        axios.get(`https://rest.bandsintown.com/artists/` + queryText + `/events?app_id=codingbootcamp`)
             .then(function (response) {
                 // console.log(  response.data, Array.isArray(response.data))
 
@@ -107,8 +107,8 @@ const listOfFunctions = {
 
     },
 
-    "movie-this": function () {
-        axios.get(`http://omdbapi.com/?t=` + args[1] + `&plot=short&apikey=trilogy`).then(function(response){
+    "movie-this": function (queryText=args[1]) {
+        axios.get(`http://omdbapi.com/?t=` + queryText + `&plot=short&apikey=trilogy`).then(function(response){
         console.log(response.data.Title);
         console.log(response.data.Year);  // year movie came out
         console.log(response.data.imdbRating);  // imdb rating
