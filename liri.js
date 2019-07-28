@@ -12,34 +12,35 @@ const [, , ...args] = process.argv
 
 
 //switch statement:
-switch(getInfo) {
-    case 'concert-this':
-        listOfFunctions[args[0]]();
-        break;
-    case 'spotify-this-song':
-        listOfFunctions[args[0]]();
-        break;
-    case 'movie-this':
-        listOfFunctions[args[0]]();
-        break;
-    default:
-        console.log('Enter your search like example: spotify-this-song,"I Want it That Way"');
+// switch(getInfo) {
+//     case 'concert-this':
+//         listOfFunctions[args[0]]();
+//         break;
+//     case 'spotify-this-song':
+//         listOfFunctions[args[0]]();
+//         break;
+//     case 'movie-this':
+//         listOfFunctions[args[0]]();
+//         break;
+//     default:
+//         console.log("line26",'Enter your search like example: spotify-this-song,"I Want it That Way"');
 
-}
+// }
 
 
 
 //Function to read txt and determine what it will do and look for:
- function getInfo(){
-    fs.readFile('random.txt', 'utf8', function(err, fileContent){
-        if(err){
-            return console.log('error');
-        }
-        var dataArray = fileContent.split(', ');
+//  function getInfo(){
+//     fs.readFile('random.txt', 'utf8', function(err, fileContent){
+//         if(err){
+//             return console.log('error');
+//         }
+//         var dataArray = fileContent.split(', ');
     
-        console.log(dataArray)
-    });
-}
+//         console.log(dataArray)
+//     });
+// }
+
 
 
 //check if 0 element is one of 4 commands [concert-this, spotify-this, movie-this]
@@ -47,16 +48,20 @@ switch(getInfo) {
 //inside of command - talk to appropriate API
 //give output back to user - via console log
 const listOfFunctions = {
-    // "do-what-it-says": function () {
-    //     fs.readFile('random.txt', 'utf8', function(err, fileContent){
-    //         if(err){
-    //             return console.log('error');
-    //         }
-    //         var dataArray = fileContent.split(', ');
-        
-    //         console.log(dataArray)
-    //     });
-    // },
+    "read-this": function () {
+    fs.readFile('random.txt', 'utf8', function(err, fileContent){
+        if(err){
+            return console.log('error');
+        }
+        var dataArray = fileContent.split(',');
+
+        console.log(dataArray[0]);
+        listOfFunctions[dataArray[0]](dataArray[1]);
+        //console.log(stringData, typeof stringData);
+        //console.log(lookupValue);
+    
+    });
+},
 
     "concert-this": function () {
         axios.get(`https://rest.bandsintown.com/artists/` + args[1] + `/events?app_id=codingbootcamp`)
@@ -68,17 +73,18 @@ const listOfFunctions = {
                     console.log(response.data[0].venue.city, response.data[0].venue.region);
                     console.log(response.data[0].datetime);
 
+
                 } else {
-                    console.log("No upcoming events found");
+                    console.log("73","No upcoming events found");
 
                 }
             })
             .catch(function (error) {
-                console.log("No upcoming events found");
+                console.log("78","No upcoming events found");
             })
     },
 
-    "spotify-this-song": () => {
+    "spotify-this-song": (queryText=args[1]) => {
         // console.log('2nd', spotifySecrets)
 
         var spotify = new Spotify({
@@ -87,7 +93,7 @@ const listOfFunctions = {
           });
            
           spotify
-            .search({ type: 'track', query: args[1], limit: 1 })
+            .search({ type: 'track', query: queryText, limit: 1 })
             .then(function(response) {
                 console.log(response.tracks.items[0].album.artists[0].name); //artist name
                 console.log(args[1]); //song name
@@ -111,6 +117,7 @@ const listOfFunctions = {
         console.log(response.data.Language);  // launguage
         console.log(response.data.Plot);  // plot movie
         console.log(response.data.Actors);  // actors
+
 });
     }
 
