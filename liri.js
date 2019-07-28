@@ -10,27 +10,53 @@ const fs = require('fs');
 
 const [, , ...args] = process.argv
 
-// args.forEach( e => {
-//     console.log(e);
-// })
+
+//switch statement:
+switch(getInfo) {
+    case 'concert-this':
+        listOfFunctions[args[0]]();
+        break;
+    case 'spotify-this-song':
+        listOfFunctions[args[0]]();
+        break;
+    case 'movie-this':
+        listOfFunctions[args[0]]();
+        break;
+    default:
+        console.log('Enter your search like example: spotify-this-song,"I Want it That Way"');
+
+}
 
 
 
-//check if 0 element is one of 4 commands [concert-this, spotify-this, movie-this - do-what-it-says]
+//Function to read txt and determine what it will do and look for:
+ function getInfo(){
+    fs.readFile('random.txt', 'utf8', function(err, fileContent){
+        if(err){
+            return console.log('error');
+        }
+        var dataArray = fileContent.split(', ');
+    
+        console.log(dataArray)
+    });
+}
+
+
+//check if 0 element is one of 4 commands [concert-this, spotify-this, movie-this]
 //depending on option, call nessecary command
 //inside of command - talk to appropriate API
 //give output back to user - via console log
 const listOfFunctions = {
-    "do-what-it-says": function () {
-        fs.readFile('random.txt', 'utf8', function(err, fileContent){
-            if(err){
-                return console.log('error');
-            }
-            var dataArray = fileContent.split(', ');
+    // "do-what-it-says": function () {
+    //     fs.readFile('random.txt', 'utf8', function(err, fileContent){
+    //         if(err){
+    //             return console.log('error');
+    //         }
+    //         var dataArray = fileContent.split(', ');
         
-            console.log(dataArray)
-        });
-    },
+    //         console.log(dataArray)
+    //     });
+    // },
 
     "concert-this": function () {
         axios.get(`https://rest.bandsintown.com/artists/` + args[1] + `/events?app_id=codingbootcamp`)
@@ -51,7 +77,7 @@ const listOfFunctions = {
                 console.log("No upcoming events found");
             })
     },
-    
+
     "spotify-this-song": () => {
         // console.log('2nd', spotifySecrets)
 
