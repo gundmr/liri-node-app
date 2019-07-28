@@ -21,6 +21,17 @@ const [, , ...args] = process.argv
 //inside of command - talk to appropriate API
 //give output back to user - via console log
 const listOfFunctions = {
+    "do-what-it-says": function () {
+        fs.readFile('random.txt', 'utf8', function(err, fileContent){
+            if(err){
+                return console.log('error');
+            }
+            var dataArray = fileContent.split(', ');
+        
+            console.log(dataArray)
+        });
+    },
+
     "concert-this": function () {
         axios.get(`https://rest.bandsintown.com/artists/` + args[1] + `/events?app_id=codingbootcamp`)
             .then(function (response) {
@@ -40,6 +51,7 @@ const listOfFunctions = {
                 console.log("No upcoming events found");
             })
     },
+    
     "spotify-this-song": () => {
         // console.log('2nd', spotifySecrets)
 
@@ -74,17 +86,6 @@ const listOfFunctions = {
         console.log(response.data.Plot);  // plot movie
         console.log(response.data.Actors);  // actors
 });
-    },
-
-    "do-what-it-says": function () {
-        fs.readFile('random.txt', 'utf8', function(err, fileContent){
-            if(err){
-                return console.log('error');
-            }
-            var dataArray = fileContent.split(', ');
-        
-            console.log(dataArray)
-        });
     }
 
 }
