@@ -21,10 +21,11 @@
 * 4 main functions, which depend on user types: (1) Bands in Town Artist Events search events by artist, (2) Spotify lookup for a song, (3) OMDb lookup for a movie, and (4) read command and query from another file
 
 The program makes a request to the Bands in Town Artist Event API, the return JSON object that includes a large array, the first (most upcoming) event is selected as the output
-![GitHub Logo](/images/concert.png)
+![concert image](https://raw.githubusercontent.com/gundmr/liri-node-app/master/concert.png)
+![movie image](https://raw.githubusercontent.com/gundmr/liri-node-app/master/images/movies.png)
 
 * The program also makes a request to the Spotify API, and we get back a JSON object that includes everything we need (artist(s), song, preview link, and album)
-![GitHub Logo](/images/spotify.png)
+![ttystudio GIF](/images/spotify.png)
 
 * The program also makes a HTTP request to the OMDb API using the request NPM module, this returns a JSON object that includes our return output (title, year, IMDb rating, language, etc.)
 ![GitHub Logo](/images/movie.png)
