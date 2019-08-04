@@ -1,13 +1,13 @@
 # liri-node-app
 
-##Requirements
+## Requirements
   * Node.js app dependant on user input from the command line
   * Integrated with Bands in Town Artist Events, Spotify, and OMDb APIs
   * Use API calls and parse through returned JSON objects, outputting them in a specified format
   * Read commands and queries from file
 
 
-##Technologies Used
+## Technologies Used
   * Node.js
   * JavaScript
   * Bands in Town Artist Events (via request npm module)
@@ -15,7 +15,7 @@
   * OMDb API (via request npm module)
 
 
-##Code Explanation
+## Code Explanation
 * Authentication keys for Spotify are stored in "keys.js", then its contents are exported to the main "liri.js" file
 
 * 4 main functions, which depend on user types: (1) Bands in Town Artist Events search events by artist, (2) Spotify lookup for a song, (3) OMDb lookup for a movie, and (4) read command and query from another file
