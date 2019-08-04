@@ -22,14 +22,14 @@
 
 * The program makes a request to the Bands in Town Artist Event API, the return JSON object that includes a large array, the first (most upcoming) event is selected as the output
 ![concert image](https://raw.githubusercontent.com/gundmr/liri-node-app/master/concert.png)
-![movie image](https://raw.githubusercontent.com/gundmr/liri-node-app/master/images/movies.png)
+
 
 * The program also makes a request to the Spotify API, and we get back a JSON object that includes everything we need (artist(s), song, preview link, and album)
-![ttystudio GIF](/images/spotify.png)
+![spotify image](/images/spotify.png)
 
 * The program also makes a HTTP request to the OMDb API using the request NPM module, this returns a JSON object that includes our return output (title, year, IMDb rating, language, etc.)
-![GitHub Logo](/images/movie.png)
+![OMDB image](/images/movie.png)
 
 * The program also reads from a file called "random.text" and executes the command and query found there using string and array methods
-![GitHub Logo](/images/readThis.png)
+![txt image](/images/readThis.png)
 
